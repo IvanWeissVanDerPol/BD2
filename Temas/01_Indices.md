@@ -124,6 +124,44 @@ Datos: `[21,32,43,54]`, función hash `h(x) = x mod 4`
 
 ---
 
+## 🧩 **Ejercicios de Examen Reales**
+
+A continuación se presentan ejercicios reales de exámenes finales, útiles para practicar y entender cómo se aplican los conceptos de índices en situaciones concretas.
+
+---
+
+### 📝 **Ejercicio: Índice B+ y Hash sobre Cliente**
+
+La siguiente tabla corresponde al estado actual del archivo de la relación **Cliente**, en el que cada bloque del archivo corresponde a 1 fila. Se pide:
+
+**a.** Construir un índice en forma de árbol **B+** con nodos de 4 punteros para la clave primaria `id`, suponiendo que los registros/filas fueron insertados según el orden alfabético de la columna `nombre`.
+
+**b.** Construir un índice hash estático cerrado con **cajones de 4 elementos**, cuya función de asociación es `x mod 4` sobre la columna `saldo`, siendo `x` el valor de cada fila en dicha columna.
+
+**c.** Explique detalladamente en cada caso si el índice es **primario o secundario**.
+
+| id | nombre           | saldo |
+| -- | ---------------- | ----- |
+| 1  | Preston Schwartz | 282   |
+| 2  | Cathleen Steele  | 159   |
+| 3  | Tatyana Russo    | 367   |
+| 4  | Libby Madden     | 431   |
+| 5  | Orla Reid        | 317   |
+| 6  | Vivian Cherry    | 367   |
+| 7  | Kirk Jensen      | 337   |
+| 8  | Amanda Macias    | 319   |
+| 9  | Barry Morris     | 338   |
+| 10 | Lee Lopez        | 437   |
+| 11 | Elliott Fowler   | 367   |
+| 12 | Paula Johns      | 190   |
+
+**Pistas para resolver:**
+- Para el árbol B+, recuerda que los nodos hoja deben estar enlazados y contener referencias a los registros.
+- Para el hash, distribuye los saldos usando la función `x mod 4` y agrupa en cajones de hasta 4 elementos.
+- Un índice es **primario** si está sobre la clave primaria (en este caso, `id`), y **secundario** si está sobre otro atributo (por ejemplo, `saldo`).
+
+---
+
 ## ✅ **Ejercicios planteados:**
 
 ### **Ejercicio 1: ¿Qué es un índice y archivo índice?**

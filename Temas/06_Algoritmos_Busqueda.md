@@ -24,16 +24,36 @@ La notación asintótica describe cómo se comporta un algoritmo a medida que cr
 - **Tiempo:** Exponencial `O(2^n)` en árboles binarios.
 - **Espacio:** `O(n)` por pila de llamadas recursivas.
 
-**Razón:**  
-Evalúa múltiples veces las mismas subexpresiones, resultando en redundancia y mucho tiempo de cómputo.
+**Razón detallada:**  
+En la evaluación de árboles sin optimización, cada nodo puede requerir la evaluación de sus dos subárboles (izquierdo y derecho). Para un árbol con n nodos, esto genera un patrón recursivo donde:
+- Cada nivel de recursión puede duplicar el trabajo
+- Para un árbol balanceado, la altura es aproximadamente log₂(n)
+- En el peor caso, se generan 2^0 + 2^1 + 2^2 + ... + 2^(n-1) evaluaciones
+- Esta suma es igual a 2^n - 1, resultando en complejidad O(2^n)
+
+El espacio es O(n) porque la pila de llamadas recursivas almacena como máximo n marcos de activación simultáneos, correspondientes a la altura del árbol en una evaluación en profundidad.
 
 ### 🔸 (b) Con optimización (Memoización - Programación Dinámica):
 
 - **Tiempo:** Polinómico `O(n^2)` o mejor, dependiendo del problema.
 - **Espacio:** `O(n^2)` por almacenamiento en tablas (generalmente matrices).
 
-**Razón:**  
-Almacenamiento intermedio evita cálculos repetidos (memoización), reduciendo enormemente el tiempo a cambio de memoria adicional.
+**Razón detallada:**  
+La optimización mediante programación dinámica utiliza una tabla de memoización para almacenar resultados de subproblemas ya calculados. Para la evaluación de árboles en profundidad por la izquierda:
+
+1. **Cálculo del tiempo:**
+   - Cada subproblema se calcula exactamente una vez y se almacena
+   - Para un árbol con n nodos, existen O(n²) posibles subproblemas distintos (combinaciones de subárboles)
+   - Cada cálculo de subproblema requiere tiempo constante O(1) al consultar resultados ya calculados
+   - Por tanto, el tiempo total es O(n²) en el peor caso
+
+2. **Cálculo del espacio:**
+   - Se requiere una matriz/tabla para almacenar todos los resultados intermedios
+   - Esta tabla generalmente tiene dimensiones n×n para cubrir todos los posibles subárboles
+   - Cada celda almacena el resultado óptimo para un subárbol específico
+   - Esto resulta en un espacio de O(n²)
+
+Esta optimización transforma un problema exponencial O(2^n) en uno polinómico O(n²), sacrificando espacio adicional por una mejora dramática en tiempo de ejecución.
 
 ---
 

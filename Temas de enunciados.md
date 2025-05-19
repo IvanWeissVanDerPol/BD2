@@ -1,132 +1,176 @@
-Aquí tienes los enunciados agrupados según los temas que proporcionaste:
+# Enunciados de Exámenes Agrupados por Tema
 
----
+## 1. Índices y Estructuras de Almacenamiento
 
-## 1. Índices
-- Explique en sus términos a qué corresponde un índice y a qué un archivo índice. Enumere al menos tres tipos de índices estudiados.
-- Indique para qué tipo de consultas resulta más apropiado: (a) un índice ordenado, (b) un índice hash, (c) un índice bitmap.
-- Explique los tipos de índices estudiados conforme su organización física y cuándo conviene aplicarlos.
-- Explique el costo asintótico de: (a) Búsqueda lineal, (b) Búsqueda binaria, (c) Índice primario, (d) Índice secundario.
-- Dada una operación de selección basada en condición de igualdad, indique las condiciones físicas para usar cada algoritmo.
-- Tema 6: Ilustre la construcción de un índice Hash basado en Asociación Extensible.
-- Tema 10: Construir un índice B+ e índice hash estático, y clasifique los índices como primarios o secundarios.
+### Conceptos Fundamentales
+- **Explique en sus términos a qué corresponde un índice y a qué un archivo índice. Enumere al menos tres tipos de índices estudiados.** *(Examen 2018)*
+- **Indique para qué tipo de consultas resulta más apropiado:**
+  - **(a) un índice ordenado**
+  - **(b) un índice hash**
+  - **(c) un índice bitmap**
+  *(Examen 2019, 10 puntos)*
+- **Explique los tipos de índices estudiados conforme su organización física y cuándo conviene aplicarlos.** *(Examen 2018, 10 puntos)*
+- **Explique el costo asintótico de:**
+  - **(a) Búsqueda lineal**
+  - **(b) Búsqueda binaria**
+  - **(c) Índice primario**
+  - **(d) Índice secundario**
+- **Dada una operación de selección basada en condición de igualdad, indique las condiciones físicas para usar cada algoritmo.**
+- **Explique a dónde apuntan los registros índices para cada caso anterior.**
+- **Indique en qué casos aplicarían y cuál el costo asintótico en bloques de disco para cada una de las siguientes operaciones: Búsqueda Lineal, Búsqueda Binaria, Búsqueda en índice primario para un atributo clave, Búsqueda en índice primario para un atributo no clave, Búsqueda en índice secundario para un atributo no clave.** *(Examen 2019, 10 puntos)*
 
----
+### Construcción de Índices
+- **Ilustre la construcción de un índice Hash basado en Asociación Extensible para una columna dada, mostrando la tabla y los valores de hash.**
+- **Construir un índice B+ e índice hash estático, y clasifique los índices como primarios o secundarios.**
+- **Construir un índice ordenado en forma de árbol B+ con nodos de 4 punteros para la clave primaria id, suponiendo que los registros fueron insertados según el orden de los valores de la columna nombre.**
+- **Construir un índice hash estático cerrado con cajones de N elementos cuya función de asociación es "x mod N" sobre la columna saldo, siendo x el valor de cada fila en dicha columna.**
+- **Ilustre la construcción de un índice Hash basado en la técnica de Asociación Extensible para la columna `nombre-sucursal` considerando para ello la tabla y los valores de hash indicados.** *(Examen 2017, Tema 6, 10 puntos)*
+
+### Ejercicio Práctico: Índice B+ y Hash sobre Cliente
+La siguiente tabla corresponde al estado actual del archivo de la relación **Cliente**, en el que cada bloque del archivo corresponde a 1 fila. Se pide:
+
+**a.** Construir un índice en forma de árbol **B+** con nodos de 4 punteros para la clave primaria `id`, suponiendo que los registros/filas fueron insertados según el orden alfabético de la columna `nombre`.
+
+**b.** Construir un índice hash estático cerrado con **cajones de 4 elementos**, cuya función de asociación es `"x mod 4"` sobre la columna `saldo`, siendo `x` el valor de cada fila en dicha columna.
+
+**c.** Explique detalladamente en cada caso si el índice es **primario o secundario**.
+
+| id | nombre           | saldo |
+| -- | ---------------- | ----- |
+| 1  | Preston Schwartz | 282   |
+| 2  | Cathleen Steele  | 159   |
+| 3  | Tatyana Russo    | 367   |
+| 4  | Libby Madden     | 431   |
+| 5  | Orla Reid        | 317   |
+| 6  | Vivian Cherry    | 367   |
+| 7  | Kirk Jensen      | 337   |
+| 8  | Amanda Macias    | 319   |
+| 9  | Barry Morris     | 338   |
+| 10 | Lee Lopez        | 437   |
+| 11 | Elliott Fowler   | 367   |
+| 12 | Paula Johns      | 190   |
 
 ## 2. Organización Física de Archivos
-- Explique las formas de organización física de los archivos de datos en un SGBD.
-- Explique resumidamente y en sus propios términos las posibles formas de organización de los registros en archivos.
-- Explique en sus términos las formas de organización de archivos posibles para la implementación de archivos de tablas/datos.
-- Tema 9: Detalle apropiadamente cómo se implementa la organización física de bloques denominada estructura de páginas por ranuras.
 
----
+- **Explique las formas de organización física de los archivos de datos en un SGBD.** *(Examen 2018)*
+- **Explique resumidamente y en sus propios términos las posibles formas de organización de los registros en archivos.**
+- **Explique en sus términos las formas de organización de archivos posibles para la implementación de archivos de tablas/datos.**
+- **Detalle apropiadamente cómo se implementa la organización física de bloques denominada estructura de páginas por ranuras para el almacenamiento de registros.**
+
+### Ejercicio Práctico: Estructura de páginas por ranuras
+Detalle apropiadamente cómo se implementa la organización física de bloques denominada **estructura de páginas por ranuras** para el almacenamiento de registros. *(Examen 2017, Tema 9, 10 puntos)*
 
 ## 3. Medidas de Rendimiento de Discos
-- Explique las medidas de rendimiento que deben tener en cuenta para la elección de unidades de discos magnéticos. ¿Cuál sería la más determinante?
-- Explique el algoritmo del Ascensor y mencione las principales métricas de rendimiento de discos.
-- Tema 1: Explique detalladamente las medidas de rendimiento que deben ser consideradas respecto a los discos magnéticos.
 
----
+- **Explique las medidas de rendimiento que deben tener en cuenta para la elección de unidades de discos magnéticos. ¿Cuál sería la más determinante?** *(Examen 2018)*
+- **Explique el algoritmo del Ascensor y mencione las principales métricas de rendimiento de discos.**
+- **Explique detalladamente las medidas de rendimiento que deben ser consideradas respecto a los discos magnéticos.** *(Examen 2017, Tema 1, 10 puntos)*
+
+### Ejercicio Práctico: Análisis de rendimiento
+Explique detalladamente las medidas de rendimiento que deben ser consideradas respecto a los discos magnéticos.
 
 ## 4. Niveles RAID
-- Explique los niveles de RAID 0, 1 y 5. ¿Cuál es la principal razón para la implementación de almacenamiento redundante?
-- Explique brevemente las ventajas de RAID en cuanto a rendimiento y fiabilidad. Detalle los niveles RAID 0, 1 y 5.
-- Tema 2: Explique detalladamente las ventajas de configurar un esquema de almacenamiento basado en RAID, ejemplificando niveles 1 y 5.
 
----
+- **Explique los niveles de RAID 0, 1 y 5. ¿Cuál es la principal razón para la implementación de almacenamiento redundante?** *(Examen 2018, 10 puntos)*
+- **Explique brevemente las ventajas de RAID en cuanto a rendimiento y fiabilidad. Detalle los niveles RAID 0, 1 y 5.** *(Examen 2019, 10 puntos)*
+- **Explique detalladamente las ventajas de configurar un esquema de almacenamiento basado en RAID, ejemplificando niveles 1 y 5.** *(Examen 2017, Tema 2, 10 puntos)*
+
+### Ejercicio Práctico: Ventajas de RAID y niveles 1 y 5
+Explique detalladamente las ventajas de configurar un esquema de almacenamiento basado en RAID. Ejemplifique además los niveles 1 y 5.
 
 ## 5. Árboles B y B+
-- Explique el porqué la organización basada en Árboles B y B+ resulta apropiada como estructura de datos para implementar índices ordenados.
 
----
+- **Explique el porqué la organización basada en Árboles B y B+ resulta apropiada como estructura de datos para implementar índices ordenados.** *(Examen 2018, 10 puntos)*
+- **Explique por qué la organización con Árboles B y B+ es adecuada para implementar índices ordenados.**
 
 ## 6. Algoritmos de Búsqueda
-- Explique el costo asintótico espacial y temporal del Algoritmo de Programación Dinámica:
-  - (a) sin la optimización de evaluación de árboles en profundidad por la izquierda,
-  - (b) con la optimización de evaluación de árboles en profundidad por la izquierda.
-- Dada una operación de selección cualquiera basada en una condición de igualdad, explique en qué casos un SGBD utilizará los siguientes algoritmos e indique el costo asintótico:
-  - (a) Búsqueda Lineal,
-  - (b) Búsqueda Binaria,
-  - (c) Búsqueda en índice primario para un atributo clave,
-  - (d) Búsqueda en índice secundario para atributo no clave.
-- Tema 7: Desarrolle cuatro casos hipotéticos para una consulta de selección que generen diferentes costes.
 
----
+- **Explique el costo asintótico espacial y temporal del Algoritmo de Programación Dinámica:**
+  - **(a) sin la optimización de evaluación de árboles en profundidad por la izquierda**
+  - **(b) con la optimización de evaluación de árboles en profundidad por la izquierda** *(Examen 2018, 10 puntos)*
 
-## 7. Procesamiento de Consultas
-- Grafique el Diagrama de Procesamiento de consultas y explique los pasos.
-- Detalle los pasos lógicos para el Procesamiento de Consultas.
-- Grafique el Diagrama de Procesamiento de consultas y explique los pasos del mismo (Primer Parcial 2021).
-- Tema 4: Traducción inicial a álgebra relacional de consulta JOIN y optimización (2 casos).
-- Tema 8: Evaluación con algoritmo de Bucle Anidado por Bloques para consulta JOIN. Calcule costes (LRU o MRU).
+- **Dada una operación de selección cualquiera basada en una condición de igualdad, explique en qué casos un SGBD utilizará los siguientes algoritmos e indique el costo asintótico:**
+  - **(a) Búsqueda Lineal**
+  - **(b) Búsqueda Binaria**
+  - **(c) Búsqueda en índice primario para un atributo clave**
+  - **(d) Búsqueda en índice secundario para atributo no clave** *(Examen 2018, 10 puntos)*
 
----
+- **Dada una operación de selección con igualdad simple, indique qué condiciones obligan a usar:**
+  1. **Búsqueda Lineal:** Sin índice ni orden.
+  2. **Búsqueda Binaria:** Tabla ordenada, sin índice.
+  3. **Índice Primario:** Con clave índice.
+  4. **Índice Secundario:** Sin clave única, puede recuperar varios registros.
 
-## 8. Modelado Multidimensional
-- Explique tablas de dimensiones, tablas de hechos y medidas. Dé ejemplos.
-- Explique la diferencia entre OLTP y OLAP. Dé ejemplos.
-- Explique la diferencia entre esquema estrella y cubos OLAP. Dé consideraciones.
-- Explique en sus términos qué son tablas de dimensiones, tablas de hechos y medidas en el modelado multidimensional. Enumere ejemplos.
-- Explique en sus términos cuál es la diferencia entre bases de datos OLTP y OLAP, citando ejemplos.
+### Ejercicio Práctico: Casos de selección con diferentes costos
+Desarrolle el planteamiento hipotético de cuatro casos basados en una consulta de selección en la forma: `SELECT * FROM <tabla> WHERE <tabla>.<columna> = <valor>` y que deriven cada uno en una operación selección con coste o estimación de coste diferente *(Primer Examen Final 28/11/2017, Tema 7, 10 puntos)*
 
----
+## 7. Procesamiento y Optimización de Consultas
 
-## 9. Transacciones (ACID)
-- (a) Defina el concepto de Transacción en SGBDs.
-- (b) Indique y defina las fases del Ciclo de Vida de una Transacción.
-- (c) Indique y defina las propiedades ACID que un SGBD debe asegurar.
-- Tema 3: Explique las propiedades de las transacciones que se deben garantizar por un SGBD conforme al estándar SQL.
+- **Grafique el Diagrama de Procesamiento de consultas y explique los pasos.** *(Examen 2018, 10 puntos)*
+- **Detalle los pasos lógicos para el Procesamiento de Consultas.** *(Examen 2018, 10 puntos)*
+- **Etapas lógicas para el Procesamiento de Consultas. Explique cada una.** *(Examen 2019, 10 puntos)*
+- **Dada la consulta: `SELECT e.LNAME FROM EMPLEADO e JOIN TRABAJA_EN te ON te.EMPLEADO = e.ID JOIN PROYECTO p ON (p.ID = te.PROYECTO) WHERE p.NOMBRE = 'AQUARIUS' AND e.FECHA_NAC >= '2000-01-01'` realice traducción inicial a álgebra relacional e ilustre dos casos de optimización.** *(Examen 2017, Tema 4, 10 puntos)*
 
----
+## 8. Algoritmos de Join y Evaluación de Consultas
 
-## 10. Concurrencia
-- (a) Describa la función del Componente de Gestión de Concurrencia en un SGBD.
-- (b) Describa la estructura de datos utilizada para la gestión y concesión de bloqueos.
-- (a) Describa el protocolo de Bloqueo de 2 Fases.
-- (b) Indique las variantes del protocolo de Bloqueo de 2 Fases.
-- Tema 5: Explique en Control de Concurrencia qué significa: planificación, planificación secuenciable, secuencialidad en cuanto a conflicto y secuencialidad en cuanto a vistas.
-- (a) Explique qué es una Planificación Secuencial.
-- (b) Explique qué es una Planificación Secuenciable.
-- (c) Fundamente la importancia de la Secuencialidad en SGBD.
+- **Dada la consulta: `SELECT * FROM A A JOIN B B ON A.a = B.b`, calcule el coste de evaluación de la consulta si: (1) La estrategia de reemplazo de bloques en la memoria es LRU, (2) La estrategia de reemplazo de bloques en la memoria es MRU.** *(Examen 2018, 10 puntos)*
+- **Estime el número de bloques de disco requeridos utilizando las siguientes estrategias para la reunión: (a) Reunión en bucle anidado por bloques, (b) Reunión por mezcla, (c) Reunión en base de búsqueda indexada, (d) Reunión por Hash.** *(Examen 2019, 10 puntos)*
+- **Muestre los pasos para la reunión de relaciones mediante la estrategia de la semireunión. Indique además el ahorro que conlleva la misma respecto a la transmisión de datos entre sitios en relación a la estrategia más simple.** *(Examen 2018, 10 puntos)*
+- **Dada la consulta: `SELECT * FROM A JOIN B ON A.a = B.b` teniendo en cuenta que: La tabla A se encuentra almacenada en 20 bloques, la tabla B se encuentra almacenada en 15 bloques, la memoria cuenta actualmente con 10 bloques libres para evaluar la consulta, la consulta está planificada para ser evaluada conforme al algoritmo de Bucle Anidado por Bloques. Calcule cuál será el coste de evaluación de la consulta si: (1) La estrategia de reemplazo de bloques en la memoria es LRU, (2) La estrategia de reemplazo de bloques en la memoria es MRU.** *(Examen 2017, Tema 8, 10 puntos)*
 
----
+## 9. Transacciones y Control de Concurrencia
 
-## 11. Protocolos Distribuidos
-- (a) Detalle el protocolo de Control de Concurrencia de Quorum de Consenso.
-- (b) Explique implicancias para definir valores de Quorum.
-- (c) Indique valores para emular protocolos de Mayoría y Sesgado.
-- (a) Detalle pasos del protocolo C2F (commit en 2 fases) en Bases de Datos Distribuidas.
-- (b) Cómo proceden participantes si falla coordinador.
-- (c) Cómo procede un sitio si falla.
+- **Explique detalladamente el Modelo Abstracto del Sistema de Transacciones en un Sistema de Bases de Datos Distribuidas orientado a asegurar las propiedades ACID.** *(Primer Examen Final 28/11/2017, Tema 3, 10 puntos)*
+- **Explique detalladamente las propiedades de las transacciones que deben ser aseguradas por un SGBD conforme al estándar SQL.** *(Primer Examen Final 28/11/2017, Tema 4, 10 puntos)*
+- **Explique qué entiende por un Gestor de Bloqueos en un SGBD que implementa un Control de Concurrencia basado en Bloqueos. Indique además cómo el mismo podría estar implementado y qué pasos debería tener en cuenta para evitar la inanición de las transacciones.** *(Primer Examen Final 28/11/2017, Tema 5, 10 puntos)*
+- **Explique en el contexto de los Protocolos del Control de Concurrencia qué se entiende por: (1) Planificación, (2) Planificación Secuenciable, (3) Secuencialidad en Cuanto a Conflicto, (4) Secuencialidad en Cuanto a Vistas.** *(Primer Examen Final 28/11/2017, Tema 6, 10 puntos) (Examen 2017, Tema 5, 10 puntos)*
+- **Explique qué es una Planificación Secuencial y qué es una Planificación Secuenciable. Fundamente a su criterio la importancia de la Secuencialidad en SGBD.** *(Examen 2018, 10 puntos)*
+- **Defina el concepto de Transacción en SGBDs. Indique y defina las fases del Ciclo de Vida de una Transacción. Indique y defina las propiedades que un SGBD debe asegurar para las Transacciones.** *(Examen 2019, 10 puntos)*
+- **Describa la función del Componente de Gestión de Concurrencia en un SGDB. Describa la estructura de datos utilizada para la gestión y concesión de bloqueos.** *(Examen 2019, 10 puntos)*
+- **Describa el protocolo de Bloqueo de 2 Fases. Indique cuáles son las variantes del mismo.** *(Examen 2019, 10 puntos)*
+- **Detalle el protocolo de Control de Concurrencia de Quorum de Consenso. Explique las implicancias de la condición que debe tenerse en cuenta para la definición de los valores de Quorum. Indique los valores de Quorum que permiten emular el Protocolo de Mayoría y el Protocolo Sesgado.** *(Examen 2019, 10 puntos)*
+- **Explique las propiedades de las transacciones que se deben garantizar por un SGBD conforme al estándar SQL.** *(Examen 2017, Tema 3, 10 puntos)*
 
----
+## 10. Bases de Datos Distribuidas
 
-## 12. Almacenamiento Distribuido
-- Explique detalladamente las formas de almacenamiento distribuido en Bases de Datos Distribuidas Relacionales.
-- Indique pasos y coste de transmisión para Estrategia de Semireunión según el sitio que recibe la consulta.
+- **Explique detalladamente el Protocolo de Compromiso de 2 Fases aplicado en Sistemas de Bases de Datos Distribuidas y cómo procede: (a) Un sitio participante en caso de falla del mismo, (b) Los sitios participantes en caso de falla del sitio coordinador.** *(Primer Examen Final 28/11/2017, Tema 2, 10 puntos)*
+- **Detalle los pasos de cada fase del protocolo C2F en Bases de Datos Distribuidas. Indique cómo proceden los participantes en caso de falla del coordinador. Indique cómo se procede en un sitio en caso de falla del mismo.** *(Examen 2019, 10 puntos)*
+- **Explique detalladamente las formas de almacenamiento distribuido en Bases de Datos Distribuidas Relacionales.** *(Examen 2019, 10 puntos)*
+- **Conforme la figura y la consulta "select * from R join S", indique los pasos y el costo total de transmisión de realizar la Estrategia de la Semireunión si la consulta fue recibida: (a) en el Sitio 1, (b) en el Sitio 2.** *(Examen 2019, 10 puntos)*
+- **Explique detalladamente las formas de Almacenamiento Distribuido en Sistemas de Bases de Datos Distribuidas.** *(Primer Examen Final 28/11/2017, Tema 1, 10 puntos)*
 
----
+## 11. Data Warehousing y OLAP
 
-## 13. Optimización de Consultas
-- Tema 4: Traducción inicial a álgebra relacional y optimización de consultas JOIN (2 casos).
-- Tema 7: Planteamiento hipotético de consultas SELECT que deriven en diferentes costes.
+- **Esquematizar la arquitectura de un DW y citar y describir 4 características del Dataware.** *(Examen 2018, 10 puntos)*
+- **Explique tablas de dimensiones, tablas de hechos y medidas. Dé ejemplos.** *(Examen 2018, 10 puntos)*
+- **Explique la diferencia entre OLTP y OLAP. Dé ejemplos.** *(Examen 2018, 10 puntos)*
+- **Explique la diferencia entre esquema estrella y cubos OLAP. Dé consideraciones.** *(Examen 2018, 10 puntos)*
+- **Explique en sus términos: ¿Cuál es la diferencia entre bases de datos OLTP y OLAP? Así mismo, cite al menos dos ejemplos de aplicación para cada tipo.** *(Examen 2019, 10 puntos)*
+- **Explique en sus términos en qué consisten las tablas de dimensiones, tablas de hechos y medidas en el modelado multidimensional. Así mismo, enumere al menos tres ejemplos para cada uno.** *(Examen 2019, 10 puntos)*
 
----
+## 12. Big Data y NoSQL
 
-## 14. Normalización y Dependencias Funcionales
-- Determinar dependencias funcionales en la tabla Empleado (CI, Nombre, Dirección, Cargo, Cod_Dep) y aplique hasta la 3FN.
-- A partir de relaciones Carrera, Materia, Docente identifique dependencias funcionales y aplique normalización correspondiente.
-- Indique las claves primarias y foráneas en el modelo relacional obtenido.
+- **Ilustre y describa la arquitectura de una BD BigData. Comente además acerca de 3 conceptos equivocados de una BD Big Data.** *(Examen 2018, 10 puntos)*
+- **Una de las características de las BD NoSQL corresponde a la Escalabilidad Horizontal. Describir el concepto de la misma.** *(Examen 2018, 10 puntos)*
+- **Describa las 3 V's de BigData.** *(Examen 2018, 10 puntos)*
 
----
+## 13. Modelado de Datos
 
-## Otros (Modelado ER y SQL)
-- Modelar empresa-empleados-departamento en MER y transformar a modelo relacional.
-- Modelar universidad-carreras-materias-docentes-alumnos en MER, transformar a modelo relacional y realizar consultas SQL relacionadas.
-- Diseñar esquema de base de datos para una biblioteca (Libro, Autor, Editorial, Socio, Préstamo).
-- Escribir consultas SQL y álgebra relacional para obtener empleados por departamento, analistas y totales.
-- Escribir consultas SQL para materias por carrera, docentes y alumnos que rindieron exámenes.
+- **Modelar el siguiente enunciado utilizando el modelo entidad-relación (MER): 'Una empresa tiene varios empleados. Cada empleado trabaja en un departamento. Cada departamento puede tener varios empleados y un jefe.'** *(Parcial 1 2019 Sem 2)*
+- **Transforme el modelo entidad-relación anterior a un modelo relacional.** *(Parcial 1 2019 Sem 2)*
+- **Considere la siguiente tabla: Empleado(CI, Nombre, Dirección, Cargo, Cod_Dep). Determinar las dependencias funcionales.** *(Parcial 1 2019 Sem 2)*
+- **Aplique la normalización correspondiente a la tabla anterior, hasta alcanzar la 3FN.** *(Parcial 1 2019 Sem 2)*
+- **A partir del siguiente enunciado: 'Una universidad tiene carreras. Cada carrera tiene materias. Cada materia tiene un docente responsable. Los alumnos pueden inscribirse a varias materias y rendir exámenes.' Realizar el MER.** *(Parcial 1 2016 Sem 2)*
+- **Transforme el MER anterior al modelo relacional.** *(Parcial 1 2016 Sem 2)*
+- **Dadas las siguientes relaciones, identifique las dependencias funcionales: Carrera(CodCarrera, Nombre), Materia(CodMateria, Nombre, CodCarrera), Docente(CI, Nombre, CodMateria).** *(Parcial 1 2016 Sem 2)*
+- **Aplique las formas normales correspondientes a las relaciones del punto anterior.** *(Parcial 1 2016 Sem 2)*
+- **Diseñe un esquema de base de datos para una biblioteca con las siguientes entidades: Libro, Autor, Editorial, Socio, Préstamo.** *(Parcial 1 2019 Sem 2)*
+- **Esquematice el diagrama conceptual generado por el modelo MER.** *(Parcial 1 2016 Sem 2)*
+- **Indique las claves primarias y foráneas en el modelo relacional obtenido.** *(Parcial 1 2016 Sem 2)*
 
----
+## 14. SQL y Consultas
 
-Esta organización permite repasar claramente cada tema por separado y prepararte adecuadamente para cada uno.
+- **Escriba consultas SQL para obtener: a) Lista de empleados por departamento. b) Nombre de empleados con cargo 'Analista'. c) Total de empleados por departamento.** *(Parcial 1 2019 Sem 2)*
+- **Redacte las mismas consultas del punto anterior utilizando Álgebra Relacional.** *(Parcial 1 2019 Sem 2)*
+- **Escriba consultas SQL para: a) Listar materias por carrera. b) Buscar docentes de una materia específica. c) Mostrar alumnos que rindieron exámenes en más de una materia.** *(Parcial 1 2016 Sem 2)*
+- **Resuelva el siguiente planteamiento (consultas SQL LEFT JOIN relacionadas con `cliente` y `ventas`).** *(Examen 2019, 10 puntos)*
